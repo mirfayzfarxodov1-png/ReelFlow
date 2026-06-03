@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Creator Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="creator-container">
+        <!-- Header -->
+        <div class="creator-header">
+            <h1>🎬 Creator Panel</h1>
+            <p>Faqat ilova yaratuvchisi uchun maxsus oyna</p>
+        </div>
+
+        <!-- Search User Section -->
+        <div class="search-section">
+            <h2>🔍 Foydalanuvchi qidirish</h2>
+            <div class="search-box">
+                <input type="text" id="userSearchInput" placeholder="Foydalanuvchi nikini yozing... (masalan: @dilnoza_07)">
+                <button id="searchUserBtn">Qidirish</button>
+            </div>
+            <div id="searchResult" class="search-result"></div>
+        </div>
+
+        <!-- Creator Code Section -->
+        <div class="code-section">
+            <h2>🔐 Creator Kodi</h2>
+            <p>Foydalanuvchini o'zgartirish uchun maxsus kodni yozing</p>
+            <div class="code-box">
+                <input type="text" id="creatorCodeInput" placeholder="Creator kodini yozing...">
+                <button id="applyCodeBtn" class="apply-btn">▶ Qo'llash</button>
+            </div>
+            <div id="codeStatus" class="code-status"></div>
+        </div>
+
+        <!-- User Customization Panel -->
+        <div id="customizationPanel" class="customization-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>✨ Akkauntni bezash</h2>
+                <div id="userPreview" class="user-preview">
+                    <!-- Dinamik yuklanadi -->
+                </div>
+            </div>
+
+            <!-- Background Selection -->
+            <div class="custom-section">
+                <h3>🎨 Profil foni</h3>
+                <div class="options-grid" id="backgroundOptions">
+                    <!-- Background options -->
+                </div>
+            </div>
+
+            <!-- Like Icon Selection -->
+            <div class="custom-section">
+                <h3>❤️ Layk ikonkasi</h3>
+                <div class="options-grid" id="likeIconOptions">
+                    <!-- Like icon options -->
+                </div>
+            </div>
+
+            <!-- Verified Badge -->
+            <div class="custom-section">
+                <h3>✅ Tasdiqlash belgisi</h3>
+                <div class="badge-options">
+                    <div class="badge-card" data-badge="none">
+                        <div class="badge-preview">🔘</div>
+                        <span>Yo'q</span>
+                    </div>
+                    <div class="badge-card" data-badge="gold">
+                        <div class="badge-preview gold-badge">⭐</div>
+                        <span>Oltin</span>
+                    </div>
+                    <div class="badge-card" data-badge="diamond">
+                        <div class="badge-preview diamond-badge">💎</div>
+                        <span>Olmos</span>
+                    </div>
+                    <div class="badge-card" data-badge="rainbow">
+                        <div class="badge-preview rainbow-badge">🌈</div>
+                        <span>Kamalak</span>
+                    </div>
+                    <div class="badge-card" data-badge="crown">
+                        <div class="badge-preview crown-badge">👑</div>
+                        <span>Toj</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animation Frame -->
+            <div class="custom-section">
+                <h3>🔄 Animatsiyali ramka</h3>
+                <div class="options-grid" id="frameOptions">
+                    <!-- Frame options -->
+                </div>
+            </div>
+
+            <!-- Name Style -->
+            <div class="custom-section">
+                <h3>✏️ Ism uslubi</h3>
+                <div class="options-grid" id="nameStyleOptions">
+                    <!-- Name style options -->
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div class="save-section">
+                <button id="saveChangesBtn" class="save-btn">💾 O'zgarishlarni saqlash</button>
+                <button id="resetUserBtn" class="reset-btn">🔄 Standartga qaytarish</button>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="success-icon">✅</div>
+                <h3>Akkaunt muvaffaqiyatli o'zgartirildi!</h3>
+                <p>Foydalanuvchi ma'lumotlari yangilandi</p>
+                <button onclick="closeModal()">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
