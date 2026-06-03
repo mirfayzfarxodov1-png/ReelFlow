@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎬 ReelFlow</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item active">
+                    📊 Dashboard
+                </a>
+                <a href="users.html" class="nav-item">
+                    👥 Foydalanuvchilar
+                </a>
+                <a href="videos.html" class="nav-item">
+                    🎥 Videolar
+                </a>
+                <a href="reports.html" class="nav-item">
+                    ⚠️ Shikoyatlar
+                </a>
+                <a href="settings.html" class="nav-item">
+                    ⚙️ Sozlamalar
+                </a>
+            </nav>
+            <div class="admin-info">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin">
+                <div>
+                    <p>Admin</p>
+                    <small>superadmin@reelflow.com</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Dashboard</h1>
+                <div class="header-actions">
+                    <input type="text" placeholder="Qidiruv..." class="search-input">
+                    <button class="notify-btn">🔔</button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3>12,847</h3>
+                        <p>Foydalanuvchilar</p>
+                        <span class="trend up">↑ 12%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎥</div>
+                    <div class="stat-info">
+                        <h3>48,291</h3>
+                        <p>Videolar</p>
+                        <span class="trend up">↑ 8%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-info">
+                        <h3>2.4M</h3>
+                        <p>Ko'rishlar</p>
+                        <span class="trend up">↑ 23%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-info">
+                        <h3>124K</h3>
+                        <p>Layklar</p>
+                        <span class="trend up">↑ 15%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-info">
+                        <h3>18,342</h3>
+                        <p>Izohlar</p>
+                        <span class="trend down">↓ 3%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>$12,450</h3>
+                        <p>Daromad</p>
+                        <span class="trend up">↑ 34%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Users & Videos -->
+            <div class="two-columns">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Yangi foydalanuvchilar</h3>
+                        <a href="users.html">Hammasi →</a>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Avatar</th><th>Username</th><th>Email</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="recentUsers">
+                            <!-- JS yuklaydi -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Eng ko'p ko'rilgan videolar</h3>
+                        <a href="videos.html">Hammasi →</a>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Nomi</th><th>Foydalanuvchi</th><th>Ko'rishlar</th><th>Holat</th></tr>
+                        </thead>
+                        <tbody id="topVideos">
+                            <!-- JS yuklaydi -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="card full-width">
+                <div class="card-header">
+                    <h3>30 kunlik statistika</h3>
+                </div>
+                <canvas id="statsChart" height="100"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
