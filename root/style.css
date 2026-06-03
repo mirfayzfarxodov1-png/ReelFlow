@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #000;
+    color: #fff;
+    padding-bottom: 70px;
+}
+
+/* BOTTOM NAVIGATION */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 20px;
+    border-top: 1px solid #222;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #888;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #fff;
+}
+
+.nav-item span {
+    font-size: 11px;
+}
+
+/* PAGES */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* STORIES */
+.stories-container {
+    padding: 12px 16px;
+    border-bottom: 1px solid #222;
+}
+
+.stories-wrapper {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+}
+
+/* FEED TABS */
+.feed-tabs {
+    display: flex;
+    padding: 12px 16px;
+    gap: 20px;
+    border-bottom: 1px solid #222;
+}
+
+.feed-tab {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.feed-tab.active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.videos-feed {
+    padding-bottom: 20px;
+}
+
+/* SEARCH */
+.search-header {
+    padding: 12px 16px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1a1a1a;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+}
+
+.search-tabs {
+    display: flex;
+    padding: 8px 16px;
+    gap: 16px;
+    border-bottom: 1px solid #222;
+}
+
+.search-tab {
+    background: none;
+    border: none;
+    color: #888;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.search-tab.active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* UPLOAD */
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.upload-box {
+    background: #111;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.upload-area {
+    min-height: 200px;
+    border: 2px dashed #333;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* NOTIFICATIONS */
+.notifications-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+.notifications-list {
+    padding: 0 16px;
+}
+
+/* PROFILE */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 16px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #333;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.profile-info {
+    padding: 0 16px 20px;
+    border-bottom: 1px solid #222;
+}
+
+.edit-profile-btn {
+    background: #222;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid #222;
+}
+
+.profile-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #888;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.profile-tab.active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* COMMENTS */
+.comments-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+.comment-input {
+    position: fixed;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    display: flex;
+    padding: 12px;
+    background: #000;
+    border-top: 1px solid #222;
+    gap: 10px;
+}
+
+.comment-input input {
+    flex: 1;
+    padding: 10px;
+    background: #1a1a1a;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.comment-input button {
+    background: #0095f6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* MESSAGES */
+.messages-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+/* SETTINGS */
+.settings-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+.setting-item {
+    padding: 16px;
+    border-bottom: 1px solid #111;
+    cursor: pointer;
+}
+
+/* ANALYTICS */
+.analytics-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
+
+/* MONETIZATION */
+.monetization-header {
+    padding: 16px;
+    border-bottom: 1px solid #222;
+}
