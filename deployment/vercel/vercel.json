@@ -1,0 +1,28 @@
+{
+  "name": "reelflow",
+  "version": 2,
+  "builds": [
+    {
+      "src": "web/index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web/index.html"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "@reelflow_mongo_uri",
+    "JWT_SECRET": "@reelflow_jwt_secret"
+  }
+}
