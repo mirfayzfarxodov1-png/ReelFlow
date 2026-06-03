@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: reelflow-backend
+    runtime: node
+    repo: https://github.com/yourusername/reelflow
+    buildCommand: npm install
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        fromDatabase:
+          name: reelflow-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: static
+    name: reelflow-frontend
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=31536000
+
+databases:
+  - name: reelflow-db
+    databaseName: reelflow
+    user: reelflow_user
