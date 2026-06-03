@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Sozlamalar</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎬 ReelFlow</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">📊 Dashboard</a>
+                <a href="users.html" class="nav-item">👥 Foydalanuvchilar</a>
+                <a href="videos.html" class="nav-item">🎥 Videolar</a>
+                <a href="reports.html" class="nav-item">⚠️ Shikoyatlar</a>
+                <a href="settings.html" class="nav-item active">⚙️ Sozlamalar</a>
+            </nav>
+            <div class="admin-info">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin">
+                <div><p>Admin</p><small>superadmin@reelflow.com</small></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Sozlamalar</h1>
+            </header>
+
+            <div class="settings-container">
+                <!-- General Settings -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Umumiy sozlamalar</h3>
+                    </div>
+                    <div class="settings-form">
+                        <label>Platforma nomi</label>
+                        <input type="text" id="siteName" value="ReelFlow">
+                        
+                        <label>Sayt tavsifi</label>
+                        <textarea id="siteDesc" rows="3">Videolaringiz oqimi</textarea>
+                        
+                        <label>Admin email</label>
+                        <input type="email" id="adminEmail" value="admin@reelflow.com">
+                        
+                        <label>Video maksimal hajmi (MB)</label>
+                        <input type="number" id="maxVideoSize" value="100">
+                        
+                        <button class="save-btn" onclick="saveGeneralSettings()">Saqlash</button>
+                    </div>
+                </div>
+
+                <!-- Moderation Settings -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Moderatsiya sozlamalari</h3>
+                    </div>
+                    <div class="settings-form">
+                        <label>
+                            <input type="checkbox" id="autoModerate"> Avtomatik moderatsiya
+                        </label>
+                        <label>
+                            <input type="checkbox" id="blockSpam" checked> Spamni avtomatik bloklash
+                        </label>
+                        <label>
+                            <input type="checkbox" id="requireVerification"> Tasdiqlash talab qilish
+                        </label>
+                        <button class="save-btn" onclick="saveModerationSettings()">Saqlash</button>
+                    </div>
+                </div>
+
+                <!-- API Settings -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>API sozlamalari</h3>
+                    </div>
+                    <div class="settings-form">
+                        <label>API Key</label>
+                        <input type="text" id="apiKey" readonly value="">
+                        <button class="copy-btn" onclick="copyApiKey()">📋 Nusxa olish</button>
+                        <button class="danger-btn" onclick="regenerateApiKey()">Qayta yaratish</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
