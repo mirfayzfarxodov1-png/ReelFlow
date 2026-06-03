@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Shikoyatlar</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎬 ReelFlow</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">📊 Dashboard</a>
+                <a href="users.html" class="nav-item">👥 Foydalanuvchilar</a>
+                <a href="videos.html" class="nav-item">🎥 Videolar</a>
+                <a href="reports.html" class="nav-item active">⚠️ Shikoyatlar</a>
+                <a href="settings.html" class="nav-item">⚙️ Sozlamalar</a>
+            </nav>
+            <div class="admin-info">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin">
+                <div><p>Admin</p><small>superadmin@reelflow.com</small></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Shikoyatlar</h1>
+                <div class="header-actions">
+                    <select id="reportType">
+                        <option value="all">Barcha</option>
+                        <option value="video">Video</option>
+                        <option value="comment">Izoh</option>
+                        <option value="user">Foydalanuvchi</option>
+                    </select>
+                </div>
+            </header>
+
+            <div class="cards-list" id="reportsList">
+                <!-- JS yuklaydi -->
+            </div>
+        </main>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
