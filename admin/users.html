@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Foydalanuvchilar</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎬 ReelFlow</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">📊 Dashboard</a>
+                <a href="users.html" class="nav-item active">👥 Foydalanuvchilar</a>
+                <a href="videos.html" class="nav-item">🎥 Videolar</a>
+                <a href="reports.html" class="nav-item">⚠️ Shikoyatlar</a>
+                <a href="settings.html" class="nav-item">⚙️ Sozlamalar</a>
+            </nav>
+            <div class="admin-info">
+                <img src="" alt="Admin">
+                <div><p>Admin</p><small>mirfayzfarxodov1@gmail.com</small></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Foydalanuvchilar</h1>
+                <div class="header-actions">
+                    <input type="text" id="searchUser" placeholder="Qidiruv..." class="search-input">
+                    <button class="filter-btn">🔽 Filtr</button>
+                </div>
+            </header>
+
+            <!-- Filters -->
+            <div class="filter-bar">
+                <select id="statusFilter">
+                    <option value="all">Barcha status</option>
+                    <option value="active">Faol</option>
+                    <option value="blocked">Bloklangan</option>
+                    <option value="verified">Tasdiqlangan</option>
+                </select>
+                <select id="sortBy">
+                    <option value="newest">Eng yangi</option>
+                    <option value="oldest">Eng eski</option>
+                    <option value="mostVideos">Eng ko'p video</option>
+                    <option value="mostFollowers">Eng ko'p kuzatuvchi</option>
+                </select>
+                <button id="exportBtn" class="export-btn">📥 Eksport</button>
+            </div>
+
+            <!-- Users Table -->
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="data-table full-width">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th>
+                                <th>ID</th>
+                                <th>Avatar</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Videolar</th>
+                                <th>Kuzatuvchilar</th>
+                                <th>Status</th>
+                                <th>Ro'yxatdan o'tgan</th>
+                                <th>Harakat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- JS yuklaydi -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination"></div>
+            </div>
+
+            <!-- User Detail Modal -->
+            <div id="userModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="userDetail"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
