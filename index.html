@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="ReelFlow - Videolaringiz oqimi">
+    <title>ReelFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+        <div class="nav-item" data-page="home">
+            🏠
+            <span>Bosh</span>
+        </div>
+        <div class="nav-item" data-page="search">
+            🔍
+            <span>Qidiruv</span>
+        </div>
+        <div class="nav-item" data-page="upload">
+            ➕
+            <span>Yuklash</span>
+        </div>
+        <div class="nav-item" data-page="notifications">
+            🔔
+            <span>Bildirish</span>
+        </div>
+        <div class="nav-item" data-page="profile">
+            👤
+            <span>Men</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="app">
+
+        <!-- HOME PAGE -->
+        <div id="home-page" class="page">
+            
+            <!-- Stories row -->
+            <div class="stories-container">
+                <div class="stories-wrapper">
+                    <!-- Foydalanuvchi o'zi qo'shadi -->
+                </div>
+            </div>
+
+            <!-- Feed tabs -->
+            <div class="feed-tabs">
+                <button class="feed-tab active" data-feed="foryou">Siz uchun</button>
+                <button class="feed-tab" data-feed="following">Kuzatayotganlar</button>
+            </div>
+
+            <!-- Videos feed -->
+            <div class="videos-feed">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- SEARCH PAGE -->
+        <div id="search-page" class="page">
+            <div class="search-header">
+                <input type="text" class="search-input" placeholder="Qidiruv...">
+            </div>
+            <div class="search-tabs">
+                <button class="search-tab active">Barcha</button>
+                <button class="search-tab">Videolar</button>
+                <button class="search-tab">Foydalanuvchilar</button>
+                <button class="search-tab">Hashtaglar</button>
+                <button class="search-tab">Audio</button>
+            </div>
+            <div class="search-results">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- UPLOAD PAGE -->
+        <div id="upload-page" class="page">
+            <div class="upload-container">
+                <div class="upload-box">
+                    <div class="upload-area">
+                        <!-- Foydalanuvchi o'zi qo'shadi -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS PAGE -->
+        <div id="notifications-page" class="page">
+            <div class="notifications-header">
+                <h2>Bildirishnomalar</h2>
+            </div>
+            <div class="notifications-list">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- PROFILE PAGE -->
+        <div id="profile-page" class="page">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <!-- Foydalanuvchi o'zi qo'shadi -->
+                </div>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Videolar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Kuzatuvchilar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Kuzatilgan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h3>@username</h3>
+                <p>Bio...</p>
+                <button class="edit-profile-btn">Profilni tahrirlash</button>
+            </div>
+            <div class="profile-tabs">
+                <button class="profile-tab active">Videolar</button>
+                <button class="profile-tab">Saqlangan</button>
+                <button class="profile-tab">Yoqqan</button>
+            </div>
+            <div class="profile-content">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- COMMENTS PAGE -->
+        <div id="comments-page" class="page">
+            <div class="comments-header">
+                <h3>Izohlar</h3>
+            </div>
+            <div class="comments-list">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+            <div class="comment-input">
+                <input type="text" placeholder="Izoh yozish...">
+                <button>Yuborish</button>
+            </div>
+        </div>
+
+        <!-- MESSAGES PAGE -->
+        <div id="messages-page" class="page">
+            <div class="messages-header">
+                <h3>Xabarlar</h3>
+            </div>
+            <div class="chat-list">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- SETTINGS PAGE -->
+        <div id="settings-page" class="page">
+            <div class="settings-header">
+                <h3>Sozlamalar</h3>
+            </div>
+            <div class="settings-list">
+                <div class="setting-item">Hisob</div>
+                <div class="setting-item">Maxfiylik</div>
+                <div class="setting-item">Xavfsizlik</div>
+                <div class="setting-item">Bildirishnomalar</div>
+                <div class="setting-item">Ko'rinish</div>
+                <div class="setting-item">Til</div>
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- ANALYTICS PAGE -->
+        <div id="analytics-page" class="page">
+            <div class="analytics-header">
+                <h3>Statistika</h3>
+            </div>
+            <div class="analytics-content">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+        <!-- MONETIZATION PAGE -->
+        <div id="monetization-page" class="page">
+            <div class="monetization-header">
+                <h3>Pul ishlash</h3>
+            </div>
+            <div class="monetization-content">
+                <!-- Foydalanuvchi o'zi qo'shadi -->
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
