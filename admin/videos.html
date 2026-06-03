@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Videolar</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎬 ReelFlow</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">📊 Dashboard</a>
+                <a href="users.html" class="nav-item">👥 Foydalanuvchilar</a>
+                <a href="videos.html" class="nav-item active">🎥 Videolar</a>
+                <a href="reports.html" class="nav-item">⚠️ Shikoyatlar</a>
+                <a href="settings.html" class="nav-item">⚙️ Sozlamalar</a>
+            </nav>
+            <div class="admin-info">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Admin">
+                <div><p>Admin</p><small>superadmin@reelflow.com</small></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Videolar</h1>
+                <div class="header-actions">
+                    <input type="text" id="searchVideo" placeholder="Qidiruv..." class="search-input">
+                </div>
+            </header>
+
+            <div class="filter-bar">
+                <select id="categoryFilter">
+                    <option value="all">Barcha kategoriya</option>
+                    <option value="trending">Trend</option>
+                    <option value="new">Yangi</option>
+                    <option value="reported">Shikoyat qilingan</option>
+                </select>
+                <select id="sortVideos">
+                    <option value="views">Eng ko'p ko'rilgan</option>
+                    <option value="likes">Eng ko'p layk</option>
+                    <option value="date">Eng yangi</option>
+                </select>
+                <button id="bulkDeleteBtn" class="danger-btn">🗑️ Ommaviy o'chirish</button>
+            </div>
+
+            <!-- Videos Grid -->
+            <div class="videos-grid" id="videosGrid">
+                <!-- JS yuklaydi -->
+            </div>
+
+            <div class="pagination" id="pagination"></div>
+
+            <!-- Video Preview Modal -->
+            <div id="videoModal" class="modal">
+                <div class="modal-content video-modal">
+                    <span class="close">&times;</span>
+                    <video id="videoPreview" controls></video>
+                    <div id="videoInfo"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
