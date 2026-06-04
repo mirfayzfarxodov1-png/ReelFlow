@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const http = require('http');
+const { initSocket } = require('../socket/socket-server');
 
 dotenv.config();
 
@@ -27,6 +29,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/videos', require('./routes/videos'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/comments', require('./routes/comments'));
+app.use('/api/notifications', require('../notifications/notification.routes'));
 
 // Home route
 app.get('/', (req, res) => {
@@ -39,7 +42,20 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Something went wrong!' });
 });
 
+// Create HTTP server
+const server = http.createServer(app);
+
+// Initialize Socket.io
+const io = initSocket(server);
+
+// Make io available globally
+global.io = io;
+global.onlineUsers = new Map();
+
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`🔌 Socket.io ready`);
+    console.log(`📡 WebSocket server active`);
 });
