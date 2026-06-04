@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  title: ReelFlow API
+  version: 1.0.0
+  description: ReelFlow platformasi uchun RESTful API
+  contact:
+    name: ReelFlow Support
+    email: support@reelflow.com
+servers:
+  - url: http://localhost:5000/api
+    description: Local development
+  - url: https://api.reelflow.com/api
+    description: Production
+
+tags:
+  - name: Auth
+    description: Authentication endpoints
+  - name: Users
+    description: User management
+  - name: Videos
+    description: Video operations
+  - name: Comments
+    description: Comment system
+  - name: Messages
+    description: Direct messages
+  - name: Payments
+    description: Payment processing
+  - name: Admin
+    description: Admin panel
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        fullName:
+          type: string
+        bio:
+          type: string
+        avatar:
+          type: string
+        followers:
+          type: array
+        following:
+          type: array
+        isVerified:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+    Video:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        videoUrl:
+          type: string
+        thumbnailUrl:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        views:
+          type: number
+        likesCount:
+          type: number
+        hashtags:
+          type: array
+        createdAt:
+          type: string
+          format: date-time
+
+    Comment:
+      type: object
+      properties:
+        _id:
+          type: string
+        text:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        likesCount:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      properties:
+        _id:
+          type: string
+        sender:
+          $ref: '#/components/schemas/User'
+        receiver:
+          $ref: '#/components/schemas/User'
+        text:
+          type: string
+        isRead:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, email, password]
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Bad request
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials
+
+  /videos:
+    get:
+      tags: [Videos]
+      summary: Get all videos
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of videos
+
+    post:
+      tags: [Videos]
+      summary: Upload video
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                video:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Video uploaded
+
+  /videos/{id}:
+    get:
+      tags: [Videos]
+      summary: Get video by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Video found
+        '404':
+          description: Video not found
+
+    delete:
+      tags: [Videos]
+      summary: Delete video
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Video deleted
+
+  /videos/{id}/like:
+    post:
+      tags: [Videos]
+      summary: Like/Unlike video
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liked/Unliked
+
+  /users/{username}:
+    get:
+      tags: [Users]
+      summary: Get user profile
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User found
+        '404':
+          description: User not found
+
+  /users/profile:
+    put:
+      tags: [Users]
+      summary: Update profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                bio:
+                  type: string
+                website:
+                  type: string
+      responses:
+        '200':
+          description: Profile updated
+
+  /users/follow/{userId}:
+    post:
+      tags: [Users]
+      summary: Follow/Unfollow user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Followed/Unfollowed
+
+  /users/search:
+    get:
+      tags: [Users]
+      summary: Search users
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Search results
+
+  /comments/{videoId}:
+    get:
+      tags: [Comments]
+      summary: Get video comments
+      parameters:
+        - name: videoId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of comments
+
+    post:
+      tags: [Comments]
+      summary: Add comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: videoId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '201':
+          description: Comment added
+
+  /comments/{commentId}/like:
+    post:
+      tags: [Comments]
+      summary: Like comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liked/Unliked
+
+  /messages:
+    get:
+      tags: [Messages]
+      summary: Get conversations
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of conversations
+
+  /messages/{userId}:
+    get:
+      tags: [Messages]
+      summary: Get messages with user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of messages
+
+    post:
+      tags: [Messages]
+      summary: Send message
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '201':
+          description: Message sent
+
+  /payments/wallet:
+    get:
+      tags: [Payments]
+      summary: Get wallet balance
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Wallet info
+
+  /payments/deposit:
+    post:
+      tags: [Payments]
+      summary: Deposit money
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                method:
+                  type: string
+      responses:
+        '200':
+          description: Payment intent created
+
+  /payments/withdraw:
+    post:
+      tags: [Payments]
+      summary: Withdraw money
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                method:
+                  type: string
+      responses:
+        '200':
+          description: Withdrawal request created
+
+  /admin/users:
+    get:
+      tags: [Admin]
+      summary: Get all users (Admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of users
+        '403':
+          description: Admin access required
+
+  /admin/users/{userId}/block:
+    post:
+      tags: [Admin]
+      summary: Block user (Admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User blocked
+
+  /admin/videos/{videoId}/block:
+    post:
+      tags: [Admin]
+      summary: Block video (Admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: videoId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Video blocked
