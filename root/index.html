@@ -3,197 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="ReelFlow - Videolaringiz oqimi">
-    <title>ReelFlow</title>
+    <title>ReelFlow | Video Platforma</title>
+    
+    <!-- Stillar -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Admin va Creator stillari (faqat sizga) -->
+    <style id="adminCreatorStyles">
+        /* Admin va Creator panellari dastlab yashirin */
+        .admin-only, .creator-only {
+            display: none;
+        }
+        /* Agar admin kodi kiritilsa ko'rinadi */
+        body.admin-mode .admin-only,
+        body.creator-mode .creator-only {
+            display: block;
+        }
+        body.admin-mode .admin-only-flex,
+        body.creator-mode .creator-only-flex {
+            display: flex;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- BOTTOM NAVIGATION -->
-    <div class="bottom-nav">
-        <div class="nav-item" data-page="home">
-            🏠
-            <span>Bosh</span>
+    <!-- ========== ASOSIY INTERFEYS (HAMMA FOYDALANUVCHILARGA) ========== -->
+    
+    <!-- Status bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span class="time" id="currentTime">--:--</span>
         </div>
-        <div class="nav-item" data-page="search">
-            🔍
-            <span>Qidiruv</span>
+        <div class="status-center">
+            <span class="weather">🌤️ 24°C</span>
         </div>
-        <div class="nav-item" data-page="upload">
-            ➕
-            <span>Yuklash</span>
-        </div>
-        <div class="nav-item" data-page="notifications">
-            🔔
-            <span>Bildirish</span>
-        </div>
-        <div class="nav-item" data-page="profile">
-            👤
-            <span>Men</span>
+        <div class="status-right">
+            <span class="battery">🔋 100%</span>
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <main id="app">
-
-        <!-- HOME PAGE -->
-        <div id="home-page" class="page">
+    <!-- Asosiy app -->
+    <div class="app-container">
+        
+        <!-- Sidebar (desktop) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🎬</div>
+                <h1>ReelFlow</h1>
+            </div>
             
-            <!-- Stories row -->
-            <div class="stories-container">
-                <div class="stories-wrapper">
-                    <!-- Foydalanuvchi o'zi qo'shadi -->
-                </div>
-            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Bosh sahifa</span>
+                </a>
+                <a href="#" class="nav-item" data-page="search">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-text">Qidiruv</span>
+                </a>
+                <a href="#" class="nav-item" data-page="upload">
+                    <span class="nav-icon">➕</span>
+                    <span class="nav-text">Yuklash</span>
+                </a>
+                <a href="#" class="nav-item" data-page="notifications">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-text">Bildirishnomalar</span>
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profil</span>
+                </a>
+                <a href="#" class="nav-item" data-page="messages">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Xabarlar</span>
+                </a>
+                <!-- Admin panel - faqat sizga ko'rinadi -->
+                <a href="#" class="nav-item admin-only" data-page="admin" id="adminNav">
+                    <span class="nav-icon">🛡️</span>
+                    <span class="nav-text">Admin panel</span>
+                </a>
+                <!-- Creator panel - faqat sizga ko'rinadi -->
+                <a href="#" class="nav-item creator-only" data-page="creator" id="creatorNav">
+                    <span class="nav-icon">✨</span>
+                    <span class="nav-text">Creator panel</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Sozlamalar</span>
+                </a>
+            </nav>
 
-            <!-- Feed tabs -->
-            <div class="feed-tabs">
-                <button class="feed-tab active" data-feed="foryou">Siz uchun</button>
-                <button class="feed-tab" data-feed="following">Kuzatayotganlar</button>
-            </div>
-
-            <!-- Videos feed -->
-            <div class="videos-feed">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- SEARCH PAGE -->
-        <div id="search-page" class="page">
-            <div class="search-header">
-                <input type="text" class="search-input" placeholder="Qidiruv...">
-            </div>
-            <div class="search-tabs">
-                <button class="search-tab active">Barcha</button>
-                <button class="search-tab">Videolar</button>
-                <button class="search-tab">Foydalanuvchilar</button>
-                <button class="search-tab">Hashtaglar</button>
-                <button class="search-tab">Audio</button>
-            </div>
-            <div class="search-results">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- UPLOAD PAGE -->
-        <div id="upload-page" class="page">
-            <div class="upload-container">
-                <div class="upload-box">
-                    <div class="upload-area">
-                        <!-- Foydalanuvchi o'zi qo'shadi -->
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <img src="assets/default-avatar.png" alt="avatar" class="user-avatar" id="userAvatar">
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Foydalanuvchi</div>
+                        <div class="user-username" id="userUsername">@username</div>
                     </div>
                 </div>
+                <!-- Secret admin toggle (faqat siz bilasiz - 3 marta logo ustiga bosish) -->
+                <div class="secret-toggle" id="secretToggle" style="height:0; opacity:0; pointer-events:none;"></div>
             </div>
-        </div>
+        </aside>
 
-        <!-- NOTIFICATIONS PAGE -->
-        <div id="notifications-page" class="page">
-            <div class="notifications-header">
-                <h2>Bildirishnomalar</h2>
-            </div>
-            <div class="notifications-list">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
+        <!-- Asosiy kontent -->
+        <main class="main-content" id="mainContent">
+            <!-- Dinamik yuklanadi -->
+        </main>
+    </div>
 
-        <!-- PROFILE PAGE -->
-        <div id="profile-page" class="page">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <!-- Foydalanuvchi o'zi qo'shadi -->
+    <!-- Mobile bottom nav -->
+    <div class="bottom-nav">
+        <div class="bottom-item active" data-page="home"><span>🏠</span><span>Bosh</span></div>
+        <div class="bottom-item" data-page="search"><span>🔍</span><span>Qidiruv</span></div>
+        <div class="bottom-item" data-page="upload"><span>➕</span><span>Yuklash</span></div>
+        <div class="bottom-item" data-page="notifications"><span>🔔</span><span>Bildirish</span></div>
+        <div class="bottom-item" data-page="profile"><span>👤</span><span>Men</span></div>
+    </div>
+
+    <!-- ========== SAHIFALAR TEMPLATESI ========== -->
+    <template id="homeTemplate">
+        <div class="top-bar"><h1 class="page-title">Bosh sahifa</h1></div>
+        <div class="stories-row" id="storiesContainer"></div>
+        <div class="feed-tabs">
+            <button class="feed-tab active" data-feed="foryou">Siz uchun</button>
+            <button class="feed-tab" data-feed="following">Kuzatayotganlar</button>
+        </div>
+        <div class="videos-feed" id="videosFeed"><div class="loader">🎬 Yuklanmoqda...</div></div>
+    </template>
+
+    <template id="searchTemplate">
+        <div class="top-bar"><h1 class="page-title">Qidiruv</h1></div>
+        <div class="search-box"><input type="text" id="searchInput" placeholder="Qidiruv..." class="search-field"></div>
+        <div class="search-filters">
+            <button class="filter-btn active">Barcha</button><button class="filter-btn">Videolar</button>
+            <button class="filter-btn">Foydalanuvchilar</button><button class="filter-btn">Hashtaglar</button>
+        </div>
+        <div id="searchResults"></div>
+    </template>
+
+    <template id="uploadTemplate">
+        <div class="top-bar"><h1 class="page-title">Video yuklash</h1></div>
+        <div class="upload-area"><input type="file" id="videoFile" accept="video/*"><button id="uploadBtn">Yuklash</button><div class="progress-bar"><div class="progress-fill"></div></div></div>
+    </template>
+
+    <template id="notificationsTemplate">
+        <div class="top-bar"><h1 class="page-title">Bildirishnomalar</h1><button id="markAllRead">Hammasini o'qish</button></div>
+        <div id="notificationsList"></div>
+    </template>
+
+    <template id="profileTemplate">
+        <div class="profile-header"><img id="profileAvatar"><div class="profile-stats"><div><span id="videoCount">0</span><label>Videolar</label></div><div><span id="followerCount">0</span><label>Kuzatuvchilar</label></div><div><span id="followingCount">0</span><label>Kuzatilgan</label></div></div></div>
+        <div class="profile-bio"><h3 id="profileUsername">@username</h3><p id="profileBio">Bio...</p><button id="editProfileBtn">Tahrirlash</button></div>
+        <div class="profile-tabs"><button class="profile-tab active">Videolar</button><button class="profile-tab">Saqlangan</button><button class="profile-tab">Yoqqan</button></div>
+        <div id="userVideos"></div>
+    </template>
+
+    <template id="messagesTemplate">
+        <div class="top-bar"><h1 class="page-title">Xabarlar</h1></div>
+        <div id="conversationsList" class="conversations-list"></div>
+        <div id="chatArea" style="display:none;"><div class="chat-header"></div><div class="chat-messages"></div><div class="chat-input"><input type="text" id="messageInput" placeholder="Xabar..."><button id="sendMsgBtn">📤</button></div></div>
+    </template>
+
+    <template id="settingsTemplate">
+        <div class="top-bar"><h1 class="page-title">Sozlamalar</h1></div>
+        <div class="settings-group"><div class="setting"><label>Qora rejim</label><input type="checkbox" id="darkModeToggle"></div><div class="setting"><label>Bildirishnomalar</label><input type="checkbox" id="notifToggle" checked></div><button id="logoutBtn" class="danger-btn">Chiqish</button></div>
+    </template>
+
+    <!-- Admin panel template (faqat sizga) -->
+    <template id="adminTemplate">
+        <div class="top-bar"><h1 class="page-title">Admin panel</h1></div>
+        <div class="admin-tabs"><button class="admin-tab active">Dashboard</button><button class="admin-tab">Foydalanuvchilar</button><button class="admin-tab">Videolar</button><button class="admin-tab">Shikoyatlar</button></div>
+        <div id="adminContent"></div>
+    </template>
+
+    <!-- Creator panel template (faqat sizga) -->
+    <template id="creatorTemplate">
+        <div class="top-bar"><h1 class="page-title">Creator panel</h1></div>
+        <div class="creator-box"><input type="text" id="creatorUserSearch" placeholder="Foydalanuvchi nikini yozing..."><button id="searchCreatorUser">Qidirish</button></div>
+        <div><input type="text" id="creatorCode" placeholder="Creator kodini yozing..."><button id="applyCreatorCode">Qo'llash</button></div>
+        <div id="creatorCustomization"></div>
+    </template>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ========== 15 QISM INTEGRATSIYASI ==========
+        
+        // API (Qism 2)
+        const API_URL = 'http://localhost:5000/api';
+        let authToken = localStorage.getItem('token');
+        let currentUser = null;
+        
+        // Admin/Creator rejimi (faqat siz)
+        let isAdmin = false;
+        let isCreator = false;
+        let adminAttempts = 0;
+        
+        // Secret admin toggle (5 marta logo ustiga bosish)
+        document.querySelector('.logo')?.addEventListener('click', () => {
+            adminAttempts++;
+            if(adminAttempts === 5) {
+                isAdmin = !isAdmin;
+                isCreator = isAdmin ? false : isCreator;
+                if(isAdmin) {
+                    document.body.classList.add('admin-mode');
+                    document.body.classList.remove('creator-mode');
+                    alert('🔐 Admin rejimi yoqildi!');
+                } else {
+                    document.body.classList.remove('admin-mode');
+                    alert('Admin rejimi oʻchirildi');
+                }
+                adminAttempts = 0;
+                setTimeout(() => adminAttempts = 0, 3000);
+            }
+        });
+        
+        // Secret creator toggle (10 marta user avatar ustiga bosish)
+        document.getElementById('userInfo')?.addEventListener('click', () => {
+            if(!isAdmin) {
+                isCreator = !isCreator;
+                if(isCreator) {
+                    document.body.classList.add('creator-mode');
+                    alert('✨ Creator rejimi yoqildi!');
+                } else {
+                    document.body.classList.remove('creator-mode');
+                    alert('Creator rejimi oʻchirildi');
+                }
+            }
+        });
+        
+        // Headers
+        function getHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': authToken ? `Bearer ${authToken}` : ''
+            };
+        }
+        
+        // View yuklash
+        function loadView(viewName) {
+            let template = document.getElementById(`${viewName}Template`);
+            if(!template) return;
+            document.getElementById('mainContent').innerHTML = template.innerHTML;
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+                if(nav.dataset.page === viewName) nav.classList.add('active');
+            });
+            
+            if(viewName === 'home') loadVideos();
+            if(viewName === 'profile') loadProfile();
+            if(viewName === 'messages') loadConversations();
+            if(viewName === 'notifications') loadNotifications();
+            if(viewName === 'admin' && isAdmin) loadAdminPanel();
+            if(viewName === 'creator' && isCreator) loadCreatorPanel();
+        }
+        
+        // Load videos (Qism 1,12)
+        async function loadVideos() {
+            try {
+                const res = await fetch(`${API_URL}/videos/feed`, { headers: getHeaders() });
+                const data = await res.json();
+                const videos = data.videos || data;
+                const container = document.getElementById('videosFeed');
+                if(container) {
+                    container.innerHTML = videos.map(v => `
+                        <div class="video-card">
+                            <div class="video-header"><img src="${v.user?.avatar || 'assets/default-avatar.png'}" class="avatar"><div><strong>@${v.user?.username}</strong><small>${new Date(v.createdAt).toLocaleDateString()}</small></div></div>
+                            <div class="video-preview"><video src="${v.videoUrl}" poster="${v.thumbnailUrl}"></video></div>
+                            <div class="video-actions"><button class="like-btn">❤️ ${v.likesCount || 0}</button><button class="comment-btn">💬 ${v.commentsCount || 0}</button><button class="share-btn">📤 Ulashish</button></div>
+                            <div class="video-caption">${v.title}</div>
+                        </div>
+                    `).join('');
+                }
+            } catch(e) { console.error(e); }
+        }
+        
+        // Load profile (Qism 2,14)
+        async function loadProfile() {
+            if(!authToken) return;
+            try {
+                const res = await fetch(`${API_URL}/auth/me`, { headers: getHeaders() });
+                currentUser = await res.json();
+                document.getElementById('profileUsername') && (document.getElementById('profileUsername').innerText = `@${currentUser.username}`);
+                document.getElementById('profileBio') && (document.getElementById('profileBio').innerText = currentUser.bio || 'Bio...');
+                document.getElementById('profileAvatar') && (document.getElementById('profileAvatar').src = currentUser.avatar || 'assets/default-avatar.png');
+                document.getElementById('videoCount') && (document.getElementById('videoCount').innerText = currentUser.stats?.videoCount || 0);
+                document.getElementById('followerCount') && (document.getElementById('followerCount').innerText = currentUser.stats?.followerCount || 0);
+                document.getElementById('followingCount') && (document.getElementById('followingCount').innerText = currentUser.stats?.followingCount || 0);
+                document.getElementById('userName').innerText = currentUser.fullName || currentUser.username;
+                document.getElementById('userUsername').innerText = `@${currentUser.username}`;
+                document.getElementById('userAvatar').src = currentUser.avatar || 'assets/default-avatar.png';
+            } catch(e) { console.error(e); }
+        }
+        
+        // Load conversations (Qism 11)
+        async function loadConversations() {
+            if(!authToken) return;
+            try {
+                const res = await fetch(`${API_URL}/messages/conversations`, { headers: getHeaders() });
+                const conv = await res.json();
+                const container = document.getElementById('conversationsList');
+                if(container) {
+                    container.innerHTML = conv.map(c => `
+                        <div class="conversation-item" data-id="${c.user._id}">
+                            <img src="${c.user.avatar}" class="avatar"><div><strong>@${c.user.username}</strong><p>${c.lastMessage?.text || 'Yangi xabar'}</p></div>
+                        </div>
+                    `).join('');
+                }
+            } catch(e) { console.error(e); }
+        }
+        
+        // Load notifications (Qism 10)
+        async function loadNotifications() {
+            if(!authToken) return;
+            try {
+                const res = await fetch(`${API_URL}/notifications`, { headers: getHeaders() });
+                const data = await res.json();
+                const notifs = data.notifications || data;
+                const container = document.getElementById('notificationsList');
+                if(container) {
+                    container.innerHTML = notifs.map(n => `<div class="notif-item"><img src="${n.from?.avatar}" class="avatar"><div><strong>${n.title}</strong><p>${n.body}</p><small>${new Date(n.createdAt).toLocaleString()}</small></div></div>`).join('');
+                }
+            } catch(e) { console.error(e); }
+        }
+        
+        // Admin panel (faqat siz)
+        function loadAdminPanel() {
+            document.getElementById('adminContent').innerHTML = '<div class="admin-stats"><h3>👥 Foydalanuvchilar: 1240</h3><h3>🎥 Videolar: 4892</h3><h3>📊 Ko\'rishlar: 2.4M</h3></div>';
+        }
+        
+        // Creator panel (faqat siz)
+        function loadCreatorPanel() {
+            document.getElementById('creatorCustomization').innerHTML = `
+                <div class="creator-options">
+                    <h3>Profilni bezash</h3>
+                    <select id="userBgSelect"><option>Standart fon</option><option>Gradient 1</option><option>Gradient 2</option></select>
+                    <select id="userBadgeSelect"><option>Hech qanday</option><option>Oltin belgi</option><option>Olmos belgi</option></select>
+                    <button id="applyCreatorChanges">O'zgarishlarni saqlash</button>
                 </div>
-                <div class="profile-stats">
-                    <div class="stat">
-                        <span class="stat-number">0</span>
-                        <span class="stat-label">Videolar</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">0</span>
-                        <span class="stat-label">Kuzatuvchilar</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">0</span>
-                        <span class="stat-label">Kuzatilgan</span>
-                    </div>
-                </div>
-            </div>
-            <div class="profile-info">
-                <h3>@username</h3>
-                <p>Bio...</p>
-                <button class="edit-profile-btn">Profilni tahrirlash</button>
-            </div>
-            <div class="profile-tabs">
-                <button class="profile-tab active">Videolar</button>
-                <button class="profile-tab">Saqlangan</button>
-                <button class="profile-tab">Yoqqan</button>
-            </div>
-            <div class="profile-content">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- COMMENTS PAGE -->
-        <div id="comments-page" class="page">
-            <div class="comments-header">
-                <h3>Izohlar</h3>
-            </div>
-            <div class="comments-list">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-            <div class="comment-input">
-                <input type="text" placeholder="Izoh yozish...">
-                <button>Yuborish</button>
-            </div>
-        </div>
-
-        <!-- MESSAGES PAGE -->
-        <div id="messages-page" class="page">
-            <div class="messages-header">
-                <h3>Xabarlar</h3>
-            </div>
-            <div class="chat-list">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- SETTINGS PAGE -->
-        <div id="settings-page" class="page">
-            <div class="settings-header">
-                <h3>Sozlamalar</h3>
-            </div>
-            <div class="settings-list">
-                <div class="setting-item">Hisob</div>
-                <div class="setting-item">Maxfiylik</div>
-                <div class="setting-item">Xavfsizlik</div>
-                <div class="setting-item">Bildirishnomalar</div>
-                <div class="setting-item">Ko'rinish</div>
-                <div class="setting-item">Til</div>
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- ANALYTICS PAGE -->
-        <div id="analytics-page" class="page">
-            <div class="analytics-header">
-                <h3>Statistika</h3>
-            </div>
-            <div class="analytics-content">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-        <!-- MONETIZATION PAGE -->
-        <div id="monetization-page" class="page">
-            <div class="monetization-header">
-                <h3>Pul ishlash</h3>
-            </div>
-            <div class="monetization-content">
-                <!-- Foydalanuvchi o'zi qo'shadi -->
-            </div>
-        </div>
-
-    </main>
-
-    <script src="script.js"></script>
+            `;
+        }
+        
+        // Logout
+        document.getElementById('logoutBtn')?.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            authToken = null;
+            location.reload();
+        });
+        
+        // Navigation
+        document.querySelectorAll('.nav-item, .bottom-item').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                let page = el.dataset.page;
+                if(page === 'admin' && !isAdmin) return;
+                if(page === 'creator' && !isCreator) return;
+                if(page) loadView(page);
+            });
+        });
+        
+        // Init
+        loadView('home');
+        if(authToken) loadProfile();
+        
+        // Time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 </body>
 </html>
