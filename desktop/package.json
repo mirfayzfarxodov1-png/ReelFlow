@@ -1,0 +1,61 @@
+{
+  "name": "reelflow-desktop",
+  "version": "1.0.0",
+  "description": "ReelFlow Desktop App - Video platformasi",
+  "main": "main.js",
+  "author": "ReelFlow",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "dist": "electron-builder --win --mac --linux",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "electron": "^27.0.0",
+    "electron-updater": "^6.1.7",
+    "axios": "^1.4.0",
+    "electron-store": "^8.1.0",
+    "electron-log": "^5.0.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.6.4",
+    "electron-reload": "^2.0.0"
+  },
+  "build": {
+    "appId": "com.reelflow.desktop",
+    "productName": "ReelFlow",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/.cache",
+      "!dist"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns",
+      "category": "public.app-category.social-networking"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/icon.png",
+      "category": "Network"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
