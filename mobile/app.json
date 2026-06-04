@@ -1,0 +1,52 @@
+{
+  "name": "reelflow",
+  "displayName": "ReelFlow",
+  "expo": {
+    "name": "ReelFlow",
+    "slug": "reelflow",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.reelflow.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "ReelFlow video yuklash uchun kameraga kirish huquqini talab qiladi",
+        "NSPhotoLibraryUsageDescription": "ReelFlow video va rasmlarni tanlash uchun galereyaga kirish huquqini talab qiladi",
+        "NSMicrophoneUsageDescription": "ReelFlow ovoz yozish uchun mikrofonga kirish huquqini talab qiladi"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.reelflow.app",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./src/assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
+  }
+}
