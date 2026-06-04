@@ -1,0 +1,53 @@
+# OSX
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# React Native
+.idea/
+.expo/
+*.apk
+*.ipa
+buck-out/
+gradle/
+local.properties
+*.iml
+*.hprof
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build
+android/app/build/
+android/app/debug/
+android/app/release/
+android/build/
+ios/build/
+
+# Xcode
+ios/Pods/
+ios/Podfile.lock
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcuserstate
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+
+# Misc
+*.swp
+*~
+.rhino.d.ts
