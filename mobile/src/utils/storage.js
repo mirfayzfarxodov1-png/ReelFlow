@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const TOKEN_KEY = 'reelflow_token';
 const USER_KEY = 'reelflow_user';
 
+// Token
 export const storeToken = async (token) => {
   try {
     await AsyncStorage.setItem(TOKEN_KEY, token);
@@ -28,6 +29,7 @@ export const removeToken = async () => {
   }
 };
 
+// User
 export const storeUser = async (user) => {
   try {
     await AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -46,6 +48,15 @@ export const getUser = async () => {
   }
 };
 
+export const removeUser = async () => {
+  try {
+    await AsyncStorage.removeItem(USER_KEY);
+  } catch (error) {
+    console.error('Error removing user:', error);
+  }
+};
+
+// Clear all
 export const clearStorage = async () => {
   try {
     await AsyncStorage.multiRemove([TOKEN_KEY, USER_KEY]);
