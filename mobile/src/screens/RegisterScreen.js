@@ -8,19 +8,22 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
+  Image,
+  ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { register } from '../utils/api';
-import { storeToken } from '../utils/storage';
+import { useAuth } from '../context/AuthContext';
 
 export default function RegisterScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { register } = useAuth();
 
   const handleRegister = async () => {
     if (!username || !email || !password) {
@@ -38,15 +41,17 @@ export default function RegisterScreen({ navigation }) {
       return;
     }
 
+    if (username.length < 3) {
+      Alert.alert('Xato', 'Username kamida 3 belgidan iborat bo\'lishi kerak');
+      return;
+    }
+
     setLoading(true);
-    try {
-      const data = await register(username, email, password);
-      await storeToken(data.token);
-      navigation.replace('Main');
-    } catch (error) {
-      Alert.alert('Xato', error.message || 'Ro\'yxatdan o\'tish failed');
-    } finally {
-      setLoading(false);
+    const result = await register(username, email, password, fullName);
+    setLoading(false);
+
+    if (!result.success) {
+      Alert.alert('Xato', result.error);
     }
   };
 
@@ -55,10 +60,14 @@ export default function RegisterScreen({ navigation }) {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.logoContainer}>
-          <Icon name="videocam" size={60} color="#fff" />
+          <Image
+            source={require('../assets/images/logo.png')}
+            style={styles.logo}
+          />
           <Text style={styles.logoText}>ReelFlow</Text>
+          <Text style={styles.tagline}>Yangi akkaunt yaratish</Text>
         </View>
 
         <View style={styles.form}>
@@ -78,6 +87,13 @@ export default function RegisterScreen({ navigation }) {
             onChangeText={setEmail}
             autoCapitalize="none"
             keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="To'liq ism"
+            placeholderTextColor="#888"
+            value={fullName}
+            onChangeText={setFullName}
           />
           <View style={styles.passwordContainer}>
             <TextInput
@@ -112,7 +128,7 @@ export default function RegisterScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
@@ -120,58 +136,68 @@ export default function RegisterScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#000'
   },
-  content: {
-    flex: 1,
+  scrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 24,
+    paddingVertical: 40
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 40
+  },
+  logo: {
+    width: 70,
+    height: 70,
+    marginBottom: 12
   },
   logoText: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 12,
+    color: '#fff'
+  },
+  tagline: {
+    fontSize: 14,
+    color: '#888',
+    marginTop: 4
   },
   form: {
-    gap: 14,
+    gap: 14
   },
   input: {
     backgroundColor: '#1a1a1a',
     borderRadius: 12,
     padding: 14,
     color: '#fff',
-    fontSize: 15,
+    fontSize: 15
   },
   passwordContainer: {
-    position: 'relative',
+    position: 'relative'
   },
   passwordInput: {
-    paddingRight: 50,
+    paddingRight: 50
   },
   registerButton: {
     backgroundColor: '#0095f6',
     borderRadius: 12,
     padding: 14,
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 8
   },
   registerButtonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '600'
   },
   loginText: {
     textAlign: 'center',
     color: '#888',
-    marginTop: 16,
+    marginTop: 20
   },
   loginLink: {
     color: '#0095f6',
-    fontWeight: '600',
-  },
+    fontWeight: '600'
+  }
 });
