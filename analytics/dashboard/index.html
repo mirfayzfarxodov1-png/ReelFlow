@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelFlow | Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>📊 Analytics Dashboard</h1>
+            <div class="period-selector">
+                <button class="period-btn active" data-period="day">Kunlik</button>
+                <button class="period-btn" data-period="week">Haftalik</button>
+                <button class="period-btn" data-period="month">Oylik</button>
+                <button class="period-btn" data-period="year">Yillik</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👁️</div>
+                <div class="stat-info">
+                    <h3 id="totalViews">0</h3>
+                    <p>Umumiy ko'rishlar</p>
+                    <span class="trend up" id="viewsTrend">↑ 0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-info">
+                    <h3 id="totalLikes">0</h3>
+                    <p>Layklar</p>
+                    <span class="trend up" id="likesTrend">↑ 0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💬</div>
+                <div class="stat-info">
+                    <h3 id="totalComments">0</h3>
+                    <p>Izohlar</p>
+                    <span class="trend up" id="commentsTrend">↑ 0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📤</div>
+                <div class="stat-info">
+                    <h3 id="totalShares">0</h3>
+                    <p>Ulashishlar</p>
+                    <span class="trend up" id="sharesTrend">↑ 0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <h3 id="newFollowers">0</h3>
+                    <p>Yangi kuzatuvchilar</p>
+                    <span class="trend up" id="followersTrend">↑ 0%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3 id="totalRevenue">$0</h3>
+                    <p>Umumiy daromad</p>
+                    <span class="trend up" id="revenueTrend">↑ 0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-row">
+            <div class="chart-card large">
+                <h3>📈 Ko'rishlar statistikasi</h3>
+                <canvas id="viewsChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>💰 Daromad</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+
+        <div class="charts-row">
+            <div class="chart-card">
+                <h3>❤️ Engagement</h3>
+                <canvas id="engagementChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>📱 Qurilmalar</h3>
+                <canvas id="devicesChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>🌍 Geografiya</h3>
+                <canvas id="geoChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Top Videos -->
+        <div class="card">
+            <div class="card-header">
+                <h3>🏆 Eng ko'p ko'rilgan videolar</h3>
+            </div>
+            <div class="top-videos-list" id="topVideos">
+                <!-- Dynamic -->
+            </div>
+        </div>
+
+        <!-- Daily Trend Table -->
+        <div class="card">
+            <div class="card-header">
+                <h3>📅 Kunlik trend</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sana</th>
+                            <th>Ko'rishlar</th>
+                            <th>Layklar</th>
+                            <th>Izohlar</th>
+                            <th>Yangi kuzatuvchilar</th>
+                            <th>Daromad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dailyTrendTable">
+                        <!-- Dynamic -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
