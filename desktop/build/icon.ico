@@ -1,0 +1,16 @@
+<!-- Windows icon fayli (.ico) -->
+<!-- 16x16, 32x32, 48x48, 256x256 o'lchamlarda -->
+<!-- Quyidagi SVG dan PNG yaratib, .ico ga o'tkazing -->
+
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="50" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <path d="M100 90 L100 166 L160 128 L100 90Z" fill="white" opacity="0.9"/>
+  <circle cx="128" cy="128" r="15" fill="white" opacity="0.3"/>
+  <text x="128" y="210" text-anchor="middle" fill="white" font-size="40" font-weight="bold" font-family="Arial">R</text>
+</svg>
